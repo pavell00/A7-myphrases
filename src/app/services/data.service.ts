@@ -10,8 +10,8 @@ import { distinct, tap, flatMap, map } from 'rxjs/operators';
 })
 export class DataService {
 
-  //dataUrl = '../assets/language.json';
-  dataUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/language.json?alt=media&token=f822950a-d291-44be-8d8f-878cbda365cc';
+  dataUrl = '../assets/language.json';
+  //dataUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/language.json?alt=media&token=f822950a-d291-44be-8d8f-878cbda365cc';
 
   constructor(private http: HttpClient) { }
 
