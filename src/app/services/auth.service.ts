@@ -64,9 +64,11 @@ export class AuthService {
     return userRef.set(data, {merge: true});
   }
 
-  async emailSignin() {
-    this.afAuth.auth.signInWithEmailAndPassword('mytest@test.com', '123456').then(
-      (success) =>  console.log(success.user)
+  async emailSignin(email: string, password: string) {
+    //this.afAuth.auth.signInWithEmailAndPassword('mytest@test.com', '123456').then(
+    this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
+      (success) =>  {//console.log(success.user); 
+                     this.router.navigate(['/phrases']);}
     ).catch(
       (error) => console.log('ERROR', error)
     )

@@ -12,13 +12,15 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class AppComponent {
   title = 'A7-FsAuth';
   items: Observable<any[]>;
+  email: string;
+  password: string;
 
   constructor(db: AngularFirestore, public auth: AuthService, private afAuth: AngularFireAuth) {
     //this.items = db.collection('employees').valueChanges();
   }
 
-  private createUser() {
-    this.afAuth.auth.createUserWithEmailAndPassword('mytest@test.com', '123456').then(
+  public createUser() {
+    this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(
       res => console.log(res)
     ).catch(
       error => console.log('ERROR creating nuw user', error)
