@@ -1,0 +1,23 @@
+<h3>create-phrase</h3>
+
+<div>
+    <mat-form-field>
+        <input matInput placeholder="RUS phrase" value="" [(ngModel)]="RUS_phrase">
+    </mat-form-field>
+    <mat-form-field>
+            <input matInput placeholder="ENG phrase" value="" [(ngModel)]="ENG_phrase">
+    </mat-form-field>
+    <mat-form-field>
+            <input matInput placeholder="ESP phrase" value="" [(ngModel)]="ESP_phrase">
+    </mat-form-field>
+</div>
+
+<a mat-mini-fab [routerLink]="['/phrases']">
+    <mat-icon>arrow_back</mat-icon>
+</a>
+<a mat-mini-fab (click)="addPhrase()">
+        <mat-icon>save</mat-icon>
+</a>
+<!--<i class="material-icons md-18">face</i>
+<i class="material-icons md-18">save</i>-->
+<!--<img [src]="assets/images/twotone_save_black_18dp.png">-->
