@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
+import { FileUpload } from './fileupload';
 
 @Component({
   selector: 'app-super-secret',
@@ -12,21 +15,34 @@ export class SuperSecretComponent implements OnInit {
   dictionary: string;
   item: Observable<any>;
   private itemDoc: AngularFirestoreDocument<any>;
+  ref: any;
+  task: AngularFireUploadTask;
+  file: File;
+  user: any;
 
-  constructor(private auth: AuthService, private  afs: AngularFirestore) { }
+  constructor(private auth: AuthService, private  afs: AngularFirestore, 
+              private adb: AngularFireDatabase, private afstorage: AngularFireStorage) { }
 
   ngOnInit() {
+    this.auth.user2$.subscribe(
+      res => this.user = res.email
+    )
   }
 
-  getMyJson() {
-    this.auth.user$.subscribe(
+  getMyJson(event: any) {
+    /*this.auth.user$.subscribe(
       res => {
         this.dictionary = res.uid;
-        //console.log(`/employees/`+res.uid);
         this.itemDoc = this.afs.doc<any>('/employees/'+res.uid);
         this.item = this.itemDoc.valueChanges();
       }
-    )
-
+    )*/
+    //console.log(event.target);
+    //const ref = this.afstorage.ref('/dictionary/test.json');
+    //this.task = this.afstorage.upload('/dictionary/test.json', event.target.files[0])
+    //this.task = this.ref.put('./test.json');
+    console.log(this.user);
+    this.afstorage.upload('/upload/my.json',  event.target.files[0]);
+    //this.adb.list('dictionary').push('./test.json');
   }
 }

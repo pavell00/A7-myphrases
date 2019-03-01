@@ -67,7 +67,8 @@ export class AuthService {
   async emailSignin(email: string, password: string) {
     //this.afAuth.auth.signInWithEmailAndPassword('mytest@test.com', '123456').then(
     this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
-      (success) =>  {//console.log(success.user); 
+      (success) =>  {console.log(success.user.email); 
+                     this.user2$.next(success.user);
                      this.router.navigate(['/phrases']);}
     ).catch(
       (error) => console.log('ERROR', error)

@@ -3,9 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule} from '@angular/common/http';
+
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 import { environment } from '../environments/environment';
 import { MatTableModule, MatExpansionModule, MatFormFieldModule,
   MatInputModule, MatButtonModule, MatCheckboxModule, MatOptionModule, MatSelectModule, 
@@ -38,6 +42,7 @@ import { DataService } from './services/data.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireDatabaseModule, AngularFireStorageModule
   ],
   providers: [DataService, { provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]
