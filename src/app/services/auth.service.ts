@@ -14,8 +14,7 @@ import { error } from 'util';
   providedIn: 'root'
 })
 export class AuthService {
-  user$: Observable<User>;
-  user2$ = new BehaviorSubject(null);
+  private isLogged$ = new BehaviorSubject<boolean>(false);
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -33,6 +32,10 @@ export class AuthService {
           }
         })
       );*/
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    return this.isLogged$.asObservable();
   }
 
   async googleSignin() {
@@ -54,7 +57,9 @@ export class AuthService {
 
   async signOut() {
     await this.afAuth.auth.signOut();
-    return this.router.navigate(['/']);
+    this.isLogged$.next(false);
+    localStorage.removeItem('useremail');
+    return this.router.navigate(['/login']);
   }
 
   private updateUserData({uid, email, displayName, photoURL}: User) {
@@ -67,9 +72,11 @@ export class AuthService {
   async emailSignin(email: string, password: string) {
     //this.afAuth.auth.signInWithEmailAndPassword('mytest@test.com', '123456').then(
     this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
-      (success) =>  {console.log(success.user.email); 
-                     this.user2$.next(success.user);
-                     this.router.navigate(['/phrases']);}
+      (success) =>  {console.log(success.user.email);
+                    localStorage.setItem('useremail', success.user.email);
+                    this.isLogged$.next(true);
+                    //this.user2$.next(success.user);
+                    this.router.navigate(['/phrases']);}
     ).catch(
       (error) => console.log('ERROR', error)
     )

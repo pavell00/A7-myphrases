@@ -26,13 +26,13 @@ export class SuperSecretComponent implements OnInit {
               private adb: AngularFireDatabase, private afstorage: AngularFireStorage) { }
 
   ngOnInit() {
-    this.auth.user2$.subscribe(
+    /*this.auth.user2$.subscribe(
       res => {
         if (res) {
           this.email = res.email;
         } else { this.email = '' }
       }
-    )
+    )*/
   }
 
   getMyJson(event: any) {

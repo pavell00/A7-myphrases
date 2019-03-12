@@ -14,19 +14,21 @@ export class AppComponent implements OnInit {
   items: Observable<any[]>;
   email: string;
   password: string;
+  isLogged : Observable<boolean>;
 
   constructor(db: AngularFirestore, public auth: AuthService, private afAuth: AngularFireAuth) {
     //this.items = db.collection('employees').valueChanges();
+    this.isLogged = this.auth.isLoggedIn();
   }
 
   ngOnInit() {
-    this.auth.user2$.subscribe(
+    /*this.auth.user2$.subscribe(
       res => {
         if (res) {
           this.email = res.email;
         } else { this.email = '' }
       }
-    )
+    )*/
   }
 
   public createUser() {
