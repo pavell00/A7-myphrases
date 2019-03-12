@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AuthService } from './services/auth.service';
@@ -9,7 +9,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'A7-FsAuth';
   items: Observable<any[]>;
   email: string;
@@ -17,6 +17,16 @@ export class AppComponent {
 
   constructor(db: AngularFirestore, public auth: AuthService, private afAuth: AngularFireAuth) {
     //this.items = db.collection('employees').valueChanges();
+  }
+
+  ngOnInit() {
+    this.auth.user2$.subscribe(
+      res => {
+        if (res) {
+          this.email = res.email;
+        } else { this.email = '' }
+      }
+    )
   }
 
   public createUser() {

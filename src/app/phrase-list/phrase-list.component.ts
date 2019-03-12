@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../services/auth.service';
 import { Phrase } from '../services/phrase';
 import { DataService } from '../services/data.service';
 
@@ -24,7 +24,7 @@ export class PhraseListComponent implements OnInit {
   displayedColumns: string[] = [];
   columnsToDisplay: string[] = [];
 
-  constructor(private dataService: DataService, private router : Router) { }
+  constructor(private dataService: DataService, private router : Router, private auth: AuthService) { }
 
   ngOnInit(): void {
     //this.onStart();

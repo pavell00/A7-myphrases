@@ -20,6 +20,8 @@ export class SuperSecretComponent implements OnInit {
   file: File;
   email: any;
 
+  items  = [{ name: "archie", age:25 }, { name: "jake", age:25 }, { name: "richard", age:30 , manager:[{empl:"Jhon"}, {empl:"Dixy"}]}, { name: "poll", age:20 }];
+
   constructor(private auth: AuthService, private  afs: AngularFirestore, 
               private adb: AngularFireDatabase, private afstorage: AngularFireStorage) { }
 
@@ -48,5 +50,10 @@ export class SuperSecretComponent implements OnInit {
     //console.log(this.user);
     this.afstorage.upload('/upload/'+this.email+'.json',  event.target.files[0]);
     //this.adb.list('dictionary').push('./test.json');
+  }
+
+  saveArrayToJson() {
+    let newFile = new Blob([JSON.stringify(this.items)], {type: "application/json", endings: 'native'});
+    this.afstorage.upload('/upload/'+this.email+'.json',  newFile);
   }
 }

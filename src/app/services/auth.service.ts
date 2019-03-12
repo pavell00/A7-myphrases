@@ -21,9 +21,9 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router) {
-      this.afAuth.authState.subscribe(
+      /*this.afAuth.authState.subscribe(
         res => this.user2$.next(res)
-      )
+      )*/
       /*this.user$ = this.afAuth.authState.pipe(
         switchMap(user => {
           if(user) {

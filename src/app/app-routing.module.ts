@@ -6,7 +6,7 @@ import { PhraseCreateComponent } from "./phrase-create/phrase-create.component";
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
-  {path: 'login', redirectTo: 'app-root' },
+  { path: 'login', redirectTo: 'app-root' },
   { path: 'secret', component: SuperSecretComponent, canActivate: [AuthGuard]},
   { path: 'phrases', component: PhraseListComponent, canActivate: [AuthGuard]},
   { path: 'phrase-create', component: PhraseCreateComponent, canActivate: [AuthGuard]},
