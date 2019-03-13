@@ -16,10 +16,7 @@ import { error } from 'util';
 export class AuthService {
   private isLogged$ = new BehaviorSubject<boolean>(false);
 
-  constructor(
-    private afAuth: AngularFireAuth,
-    private afs: AngularFirestore,
-    private router: Router) {
+  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) {
       /*this.afAuth.authState.subscribe(
         res => this.user2$.next(res)
       )*/
@@ -38,35 +35,11 @@ export class AuthService {
     return this.isLogged$.asObservable();
   }
 
-  async googleSignin() {
-    const provider = new auth.GoogleAuthProvider();
-    //const credential = await this.afAuth.auth.signInWithPopup(provider);
-    //return this.updateUserData(credential.user);
-    this.afAuth.auth.signInWithRedirect(provider);
-    this.afAuth.auth.getRedirectResult()
-    .then(
-      result => {
-        if (result.user) {
-          this.updateUserData(result.user);
-        }
-      }
-    ).catch(
-      error => console.log('ERROR', error)
-    )
-  }
-
   async signOut() {
     await this.afAuth.auth.signOut();
     this.isLogged$.next(false);
     localStorage.removeItem('useremail');
     return this.router.navigate(['/login']);
-  }
-
-  private updateUserData({uid, email, displayName, photoURL}: User) {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
-    const data = {uid,  email, displayName, photoURL};
-    console.log(data);
-    return userRef.set(data, {merge: true});
   }
 
   async emailSignin(email: string, password: string) {
