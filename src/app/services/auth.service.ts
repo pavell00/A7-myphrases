@@ -51,7 +51,12 @@ export class AuthService {
                     //this.user2$.next(success.user);
                     this.router.navigate(['/phrases']);}
     ).catch(
-      (error) => console.log('ERROR', error)
+      (error) => {
+          console.log('ERROR login', error);
+          localStorage.removeItem('useremail');
+          this.isLogged$.next(false);
+        }
+      
     )
     //const provider = new auth.EmailAuthProvider();
     //const credential = await this.afAuth.auth.signInWithPopup(provider);

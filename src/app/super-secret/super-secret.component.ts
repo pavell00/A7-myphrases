@@ -54,6 +54,7 @@ export class SuperSecretComponent implements OnInit {
 
   saveArrayToJson() {
     let newFile = new Blob([JSON.stringify(this.items)], {type: "application/json", endings: 'native'});
-    this.afstorage.upload('/upload/'+this.email+'.json',  newFile);
+    this.afstorage.upload('/upload/'+localStorage.getItem('useremail')+'.json',  newFile);
+    
   }
 }

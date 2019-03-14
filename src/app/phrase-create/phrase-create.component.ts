@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-//const fs = require('fs');
-//const fs = (<any>window).require("fs");
-//import * as fs from 'fs';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { DataService } from '../services/data.service';
 
 @Component({
     selector: 'app-phrase-create',
@@ -13,17 +12,20 @@ export class PhraseCreateComponent implements OnInit {
     ENG_phrase: string;
     ESP_phrase: string;
 
-    constructor() { }
-
+    items  = [{ name: "archie", age:25 }, { name: "jake", age:25 }, { name: "richard", age:30 , manager:[{empl:"Jhon"}, {empl:"Dixy"}]}, { name: "poll", age:20 }];
+    constructor(private dataService: DataService, private afstorage: AngularFireStorage) { }
+    
     ngOnInit(): void { }
 
     addPhrase () {
-        //console.log(this.RUS_phrase, this.ENG_phrase, this.ESP_phrase);
-        let data = "Learning how to write in a file."
-        // Write data in 'Output.txt' . 
-        /*fs.writeFile('Output.txt', data, (err:any) => { 
-            // In case of a error throw err. 
-            if (err) throw err; 
-        })*/
+        let newFile = new Blob([JSON.stringify(this.items)], {type: "application/json", endings: 'native'});
+        this.afstorage.upload('/upload/'+localStorage.getItem('useremail')+'.json',  newFile);
+    }
+
+    getId () {
+        this.dataService.getMaxId().subscribe(
+            res => console.log(res)
+        )
+
     }
 }

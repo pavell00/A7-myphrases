@@ -1,30 +1,16 @@
 <h1>Base</h1>
-<div *ngIf="(isLogged | async)">
-  <!--<pre>
-    {{user | json}}
-  </pre>
-  <hr>-->
-  <!--<button class="button" (click)="auth.signOut()">Sign Out</button>-->
-  <button class="button" (click)="auth.signOut()">Logout</button>
+<div *ngIf="isLog; else login">
+  <button class="button" (click)="logout()">Logout</button>
   <div>
     <a [routerLink]="['/secret']">Secret</a>
     <a [routerLink]="['/phrases']">Phrases</a>
   </div>
 </div>
 
-<div *ngIf="!(isLogged | async)">
+<ng-template #login>
   <input matInput placeholder="Enter email" [(ngModel)]="email"><br>
   <input matInput type="password" placeholder="Enter password" [(ngModel)]="password">
   <button class="button" (click)="auth.emailSignin(email, password)">Login with Email</button>
-  <!--<button class="button" (click)="auth.googleSignin()">Login with Google</button>-->
-</div>
-
-<!--<ul>
-  <li class="text" *ngFor="let item of items | async">
-    {{item | json}}
-  </li>
-</ul>-->
-<!--<button class="button" (click)="createUser()">Create User</button>-->
-
+</ng-template>
 
 <router-outlet></router-outlet>

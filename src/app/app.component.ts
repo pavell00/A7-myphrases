@@ -15,13 +15,17 @@ export class AppComponent implements OnInit {
   email: string;
   password: string;
   isLogged : Observable<boolean>;
+  isLog: boolean = false;
 
   constructor(db: AngularFirestore, public auth: AuthService, private afAuth: AngularFireAuth) {
     //this.items = db.collection('employees').valueChanges();
-    this.isLogged = this.auth.isLoggedIn();
+    //this.isLogged = this.auth.isLoggedIn();
   }
 
   ngOnInit() {
+    this.auth.isLoggedIn().subscribe(
+      res => this.isLog = res
+    )
     /*this.auth.user2$.subscribe(
       res => {
         if (res) {
@@ -31,11 +35,10 @@ export class AppComponent implements OnInit {
     )*/
   }
 
-  public createUser() {
-    this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(
-      res => console.log(res)
-    ).catch(
-      error => console.log('ERROR creating nuw user', error)
-    )
+  logout() {
+    this.email = null;
+    this.password = null;
+    this.auth.signOut();
   }
+
 }
