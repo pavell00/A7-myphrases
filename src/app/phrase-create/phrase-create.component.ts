@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../services/data.service';
 //const fs = require('fs');
 //const fs = (<any>window).require("fs");
 //import * as fs from 'fs';
@@ -12,10 +13,13 @@ export class PhraseCreateComponent implements OnInit {
     RUS_phrase: string;
     ENG_phrase: string;
     ESP_phrase: string;
+    list: any;
 
-    constructor() { }
+    constructor(private dataService: DataService) { }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+        this.dataService.items.subscribe(res => this.list = res)
+    }
 
     addPhrase () {
         //console.log(this.RUS_phrase, this.ENG_phrase, this.ESP_phrase);

@@ -4,7 +4,6 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
-import { FileUpload } from './fileupload';
 
 @Component({
   selector: 'app-super-secret',

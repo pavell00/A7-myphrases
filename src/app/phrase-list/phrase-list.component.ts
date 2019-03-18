@@ -31,7 +31,7 @@ export class PhraseListComponent implements OnInit {
     this.onThemes();
   }
 
-  onStart() {
+  onSearch() {
     this.displayedColumns = [];
     if (this.lngRUS) this.displayedColumns.push('langRUS');
     if (this.lngENG) this.displayedColumns.push('langENG');

@@ -5,6 +5,9 @@ import { Phrase } from './phrase';
 import { Observable, pipe } from 'rxjs';
 import { distinct, tap, flatMap, map } from 'rxjs/operators';
 
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
+import { FileUpload } from './fileupload';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,12 +16,18 @@ export class DataService {
   //dataUrl = '../assets/language.json';
   //dataUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/language.json?alt=media&token=f822950a-d291-44be-8d8f-878cbda365cc';
   dataUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/dictionary%2Flanguage.json?alt=media&token=2305b3a6-93d3-4035-9a93-d71557f80d2d';
+  items: Observable<Phrase[]>;
 
   constructor(private http: HttpClient) { }
 
   getPhrases() : Observable<Phrase[]>{
-    return this.http.get<Phrase[]>(this.dataUrl);
+    return this.items = this.http.get<Phrase[]>(this.dataUrl)
+    //return this.http.get<Phrase[]>(this.dataUrl)
   }
+
+  /*getPhrases2() {
+    this.items = this.getPhrases();
+  }*/
 
   getThemes() {
     return this.http.get<any[]>(this.dataUrl).pipe(
