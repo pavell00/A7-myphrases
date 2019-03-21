@@ -20,6 +20,10 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
+  getItems()  : Observable<Phrase[]> {
+    return this.items
+  }
+
   getPhrases() : Observable<Phrase[]>{
     return this.items = this.http.get<Phrase[]>(this.dataUrl)
     //return this.http.get<Phrase[]>(this.dataUrl)
