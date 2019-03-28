@@ -37,7 +37,7 @@ export class PhraseListComponent implements OnInit {
     if (this.lngENG) this.displayedColumns.push('langENG');
     if (this.lngESP) this.displayedColumns.push('langESP');
     this.columnsToDisplay = this.displayedColumns.slice();
-    this.dataService.getPhrases()
+    this.dataService.getItems() //getPhrases()
     .subscribe(
       data => { this.parseObject(data); }
       //data => { this.phrasesFiltered  = data }

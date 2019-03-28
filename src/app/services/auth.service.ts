@@ -9,6 +9,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from './user.model';
 import { error } from 'util';
+import { DataService } from './data.service'
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router) {
+    private router: Router,
+	  private dataService: DataService) {
       /*this.afAuth.authState.subscribe(
         res => this.user2$.next(res)
       )*/
@@ -68,8 +70,10 @@ export class AuthService {
     //this.afAuth.auth.signInWithEmailAndPassword('mytest@test.com', '123456').then(
     this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
       (success) =>  {console.log(success.user.email); 
-                     this.user2$.next(success.user);
-                     this.router.navigate(['/phrases']);}
+                      this.user2$.next(success.user);
+                      this.router.navigate(['/phrases']);
+					            this.dataService.fillItems(success.user.email);
+					 }
     ).catch(
       (error) => console.log('ERROR', error)
     )

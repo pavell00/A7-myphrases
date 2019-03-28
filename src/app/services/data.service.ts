@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+  import { Injectable, ɵConsole } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpParams } from '@angular/common/http';
 
 import { Phrase } from './phrase';
@@ -25,10 +25,26 @@ export class DataService {
   }
 
   getPhrases() : Observable<Phrase[]>{
-    return this.items = this.http.get<Phrase[]>(this.dataUrl)
-    //return this.http.get<Phrase[]>(this.dataUrl)
+    return this.http.get<Phrase[]>(this.dataUrl)
   }
 
+  fillItems(name: string) {
+    let url: string;
+    let newstr: string;
+    newstr = name.slice(0, name.indexOf('@'));
+    switch (newstr) {
+      case 'mytest2':
+        url = "https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/uploads%2Fmytest2.json?alt=media&token=8b15caaa-64fb-49b4-b3c0-c104102aacbd";  
+        break;
+      case 'mytest' :
+        url = "https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/uploads%2Fmytest.json?alt=media&token=78285f98-c477-4f39-9f25-5c78bc9afcf1";
+        break;
+      default:
+        break;
+    }
+    
+    this.items = this.http.get<Phrase[]>(url);
+  }
   /*getPhrases2() {
     this.items = this.getPhrases();
   }*/
