@@ -81,9 +81,10 @@ export class AuthService {
                             this.router.navigate(['/phrases']);
                             }
                           );
-                          
                         }
-                      );
+                      ).catch(
+                        (error) => console.log('ERROR', error)
+                      )
 					 }
     ).catch(
       (error) => console.log('ERROR', error)

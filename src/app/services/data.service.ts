@@ -7,6 +7,8 @@ import { distinct, tap, flatMap, map } from 'rxjs/operators';
 
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { FileUpload } from './fileupload';
+import { resolve } from 'dns';
+import { reject } from 'q';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,7 @@ export class DataService {
   //dataUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/language.json?alt=media&token=f822950a-d291-44be-8d8f-878cbda365cc';
   dataUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/dictionary%2Flanguage.json?alt=media&token=2305b3a6-93d3-4035-9a93-d71557f80d2d';
   items: Observable<Phrase[]>;
+  items2: Phrase[]=[];
 
   constructor(private http: HttpClient) { }
 
@@ -26,6 +29,16 @@ export class DataService {
 
   getPhrases() : Observable<Phrase[]>{
     return this.http.get<Phrase[]>(this.dataUrl)
+  }
+
+  fillItems2(urlToUserFile: string) {
+    const one = new Promise<Phrase[]>((resolve, reject) => {resolve(this.http.get<Phrase[]>(urlToUserFile).toPromise()); });
+    one.then(res => {console.log(res);
+                     this.items2 = res;
+                     console.log(this.items2);
+                    });
+    one.catch(error => {error});
+    
   }
 
   async fillItems(urlToUserFile: string) {
