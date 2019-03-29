@@ -10,6 +10,7 @@ import { switchMap } from 'rxjs/operators';
 import { User } from './user.model';
 import { error } from 'util';
 import { DataService } from './data.service'
+import { UploadFileService } from './upload-file.service'
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,8 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router,
-	  private dataService: DataService) {
+    private dataService: DataService,
+    private uploadService: UploadFileService) {
       /*this.afAuth.authState.subscribe(
         res => this.user2$.next(res)
       )*/
@@ -70,9 +72,18 @@ export class AuthService {
     //this.afAuth.auth.signInWithEmailAndPassword('mytest@test.com', '123456').then(
     this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
       (success) =>  {console.log(success.user.email); 
-                      this.user2$.next(success.user);
-                      this.router.navigate(['/phrases']);
-					            this.dataService.fillItems(success.user.email);
+                      let newstr: string;
+                      newstr = success.user.email.slice(0, success.user.email.indexOf('@'));
+                      this.uploadService.getUserFileUrl(newstr).then(
+                        res => {//console.log(res.toJSON());
+                          this.dataService.fillItems(res.val().url).then(
+                            res => {this.user2$.next(success.user);
+                            this.router.navigate(['/phrases']);
+                            }
+                          );
+                          
+                        }
+                      );
 					 }
     ).catch(
       (error) => console.log('ERROR', error)

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from './services/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { DataService} from './services/data.service';
+import { defineBase } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-root',

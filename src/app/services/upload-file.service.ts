@@ -14,6 +14,10 @@ export class UploadFileService {
 
   constructor(private db: AngularFireDatabase) { }
 
+  getUserFileUrl(userFileName: string) {
+    return firebase.database().ref('/uploads/'+userFileName+'-json').once('value')
+  }
+
   pushFileToStorage(fileUpload: FileUpload, progress: { percentage: number }) {
     const storageRef = firebase.storage().ref();
     const uploadTask = storageRef.child(`${this.basePath}/${fileUpload.file.name}`).put(fileUpload.file);
