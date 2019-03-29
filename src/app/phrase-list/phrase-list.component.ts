@@ -13,7 +13,7 @@ export class PhraseListComponent implements OnInit {
   phrases: Phrase[] = [];
   phrasesFiltered: Phrase[] = [];//lng
   themes: string[] = ['ALL'];
-  ratings: string[] = ['ALL', '0', '1', '2'];
+  ratings: string[] = ['ALL'];
   currentTheme: string;
   currentRating: string;
   
@@ -29,6 +29,7 @@ export class PhraseListComponent implements OnInit {
   ngOnInit(): void {
     //this.onStart();
     this.onThemes();
+    this.onRating();
   }
 
   onSearch() {
@@ -80,11 +81,19 @@ export class PhraseListComponent implements OnInit {
   }
 
   onThemes() {
-    this.dataService.getThemes()
+    this.dataService.getThemesFromItems() //getThemes()
       .subscribe(
         data => {this.themes.push(data.theme)}
       )
   }
+
+  onRating() {
+    this.dataService.getRatingFromItems()
+      .subscribe(
+        data => {this.ratings.push(data.rating.toString())}
+      )
+  }
+
 
   changeThemes(value: string) {
     this.currentTheme = value;

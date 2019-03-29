@@ -58,6 +58,22 @@ export class DataService {
     );
   }
 
+  getThemesFromItems() {
+    return this.items.pipe(
+      map((s) => s),
+      flatMap(a => a),
+      distinct((t: Phrase) => t.theme)
+    );
+  }
+
+  getRatingFromItems() {
+    return this.items.pipe(
+      map((s) => s),
+      flatMap(a => a),
+      distinct((t: Phrase) => t.rating)
+    );
+  }
+
   addPhrase(newEmp) {
     let emps = JSON.parse(localStorage.getItem('employees'));
     emps.push(newEmp);
