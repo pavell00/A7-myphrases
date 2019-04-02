@@ -76,7 +76,7 @@ export class AuthService {
                       newstr = success.user.email.slice(0, success.user.email.indexOf('@'));
                       this.uploadService.getUserFileUrl(newstr).then(
                         res => {//console.log(res.toJSON());
-                          this.dataService.fillItems(res.val().url).then(
+                          this.dataService.fillItems2(res.val().url).then(
                             res => {this.user2$.next(success.user);
                             this.router.navigate(['/phrases']);
                             }
