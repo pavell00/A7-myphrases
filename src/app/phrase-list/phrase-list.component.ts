@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { Phrase } from '../services/phrase';
+import { Phrase } from '../models/phrase';
 import { DataService } from '../services/data.service';
 
 @Component({

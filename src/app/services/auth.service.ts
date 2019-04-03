@@ -7,7 +7,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { User } from './user.model';
+import { User } from '../models/user.model';
 import { error } from 'util';
 import { DataService } from './data.service'
 import { UploadFileService } from './upload-file.service'

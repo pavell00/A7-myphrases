@@ -3,7 +3,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
 
-import { FileUpload } from './fileupload';
+import { FileUpload } from '../models/fileupload';
 
 @Injectable({
   providedIn: 'root'

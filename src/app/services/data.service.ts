@@ -1,12 +1,13 @@
   import { Injectable, ɵConsole } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpParams } from '@angular/common/http';
 
-import { Phrase } from './phrase';
+import { Phrase } from '../models/phrase';
+import { InVerb } from '../models/inverb';
 import { Observable, pipe, from } from 'rxjs';
 import { distinct, tap, flatMap, map } from 'rxjs/operators';
 
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
-import { FileUpload } from './fileupload';
+import { FileUpload } from '../models/fileupload';
 import { resolve } from 'dns';
 import { reject } from 'q';
 
@@ -15,16 +16,22 @@ import { reject } from 'q';
 })
 export class DataService {
 
+  inverbUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/dictionary%2FinvalVerb.json?alt=media&token=92880f03-e864-4689-bf8d-a146033dd5bb';
   //dataUrl = '../assets/language.json';
   //dataUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/language.json?alt=media&token=f822950a-d291-44be-8d8f-878cbda365cc';
   dataUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/dictionary%2Flanguage.json?alt=media&token=2305b3a6-93d3-4035-9a93-d71557f80d2d';
   items: Observable<Phrase[]>;
+  inverbItems: Observable<InVerb[]>;
   //items2: Phrase[]=[];
 
   constructor(private http: HttpClient) { }
 
   getItems()  : Observable<Phrase[]> {
     return this.items
+  }
+
+  getInverbs()  : Observable<InVerb[]> {
+    return this.inverbItems;
   }
 
   getPhrases() : Observable<Phrase[]>{
@@ -40,6 +47,11 @@ export class DataService {
                     });
     one.catch(error => {error});
     return one
+  }
+
+  fillInverbs() {
+    const one = new Promise<InVerb[]>((resolve, reject) => { resolve(this.http.get<InVerb[]>(this.inverbUrl).toPromise()) });
+    this.inverbItems = from(one); //convert promise to Observable
   }
 
   async fillItems(urlToUserFile: string) {
