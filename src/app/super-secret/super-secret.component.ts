@@ -21,7 +21,7 @@ export class SuperSecretComponent implements OnInit {
 
   items  = [{ name: "archie", age:25 }, { name: "jake", age:25 }, { name: "richard", age:30 , manager:[{empl:"Jhon"}, {empl:"Dixy"}]}, { name: "poll", age:20 }];
 
-  constructor(private auth: AuthService, private  afs: AngularFirestore, 
+  constructor(public auth: AuthService, private  afs: AngularFirestore, 
               private adb: AngularFireDatabase, private afstorage: AngularFireStorage) { }
 
   ngOnInit() {

@@ -1,6 +1,6 @@
-<table mat-table [dataSource]="phrasesFiltered" class="mat-elevation-z8">
+<table mat-table [dataSource]="inverbs" class="mat-elevation-z8">
   <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
-    <th mat-header-cell *matHeaderCellDef> {{column | slice: -3}} </th>
+    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
     <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
   </ng-container>
 
