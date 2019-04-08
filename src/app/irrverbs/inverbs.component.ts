@@ -7,21 +7,21 @@ import { InVerb } from '../models/inverb';
 import { DataService } from '../services/data.service';
 
 @Component({
-  selector: 'app-inverbs',
-  templateUrl: './inverbs.component.html',
-  styleUrls: ['./inverbs.component.css']
+  selector: 'app-Irrverbs',
+  templateUrl: './irrverbs.component.html',
+  styleUrls: ['./irrverbs.component.css']
 })
 
-export class InverbsComponent implements OnInit {
+export class IrrverbsComponent implements OnInit {
   displayedColumns: string[] = ['Verb', 'II form', 'III from', 'Translate'];;
   columnsToDisplay: string[] = [];
-  inverbs: InVerb[] = [];
+  Irrverbs: InVerb[] = [];
 
   constructor(private dataService: DataService, private router : Router, private auth: AuthService) { }
 
   ngOnInit() {
-    this.dataService.getInverbs().subscribe(
-      res => this.inverbs = res
+    this.dataService.getIrrverbs().subscribe(
+      res => this.Irrverbs = res
     )
   }
 

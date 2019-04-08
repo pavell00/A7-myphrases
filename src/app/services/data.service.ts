@@ -30,7 +30,7 @@ export class DataService {
     return this.items
   }
 
-  getInverbs()  : Observable<InVerb[]> {
+  getIrrverbs()  : Observable<InVerb[]> {
     return this.inverbItems;
   }
 
@@ -49,7 +49,7 @@ export class DataService {
     return one
   }
 
-  fillInverbs() {
+  fillIrrverbs() {
     const one = new Promise<InVerb[]>((resolve, reject) => { resolve(this.http.get<InVerb[]>(this.inverbUrl).toPromise()) });
     this.inverbItems = from(one); //convert promise to Observable
   }

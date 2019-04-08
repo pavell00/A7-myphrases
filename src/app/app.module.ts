@@ -24,13 +24,13 @@ import { PhraseEditComponent } from './phrase-edit/phrase-edit.component';
 import { PhraseListComponent } from './phrase-list/phrase-list.component';
 import { DataService } from './services/data.service';
 import { UploadFileService } from './services/upload-file.service';
-import { InverbsComponent } from './inverbs/inverbs.component';
+import { IrrverbsComponent } from './irrverbs/inverbs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SuperSecretComponent,
-    LoginComponent, PhraseCreateComponent, PhraseEditComponent, PhraseListComponent, InverbsComponent
+    LoginComponent, PhraseCreateComponent, PhraseEditComponent, PhraseListComponent, IrrverbsComponent
   ],
   imports: [
     BrowserModule,
