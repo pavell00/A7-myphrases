@@ -17,24 +17,21 @@ import { reject } from 'q';
 export class DataService {
 
   irrverbUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/dictionary%2FinvalVerb.json?alt=media&token=92880f03-e864-4689-bf8d-a146033dd5bb';
-  //dataUrl = '../assets/language.json';
-  //dataUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/language.json?alt=media&token=f822950a-d291-44be-8d8f-878cbda365cc';
   dataUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/dictionary%2Flanguage.json?alt=media&token=2305b3a6-93d3-4035-9a93-d71557f80d2d';
   items: Observable<Phrase[]>;
   inverbItems: Observable<InVerb[]>;
-  //items2: Phrase[]=[];
 
   constructor(private http: HttpClient) { }
 
-  getItems()  : Observable<Phrase[]> {
+  getItems(): Observable<Phrase[]> {
     return this.items
   }
 
-  getIrrverbs()  : Observable<InVerb[]> {
+  getIrrverbs(): Observable<InVerb[]> {
     return this.inverbItems;
   }
 
-  getPhrases() : Observable<Phrase[]>{
+  getPhrases(): Observable<Phrase[]>{
     return this.http.get<Phrase[]>(this.dataUrl)
   }
 

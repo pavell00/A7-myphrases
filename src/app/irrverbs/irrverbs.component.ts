@@ -17,6 +17,11 @@ export class IrrverbsComponent implements OnInit {
   columnsToDisplay: string[] = this.displayedColumns;
   dataSource: any;
 
+  v0: boolean = true;
+  v2: boolean = true;
+  v3: boolean = true;
+  t: boolean = true;
+
   constructor(private dataService: DataService, private router : Router, private auth: AuthService) { }
 
   ngOnInit() {
@@ -29,6 +34,16 @@ export class IrrverbsComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  changeColumns(e: any) {
+    //console.log(e);
+    //console.log(this.v0, this.v2, this.v3, this.t);
+    /*if (this.v0) {
+      this.columnsToDisplay.push('v0');
+    };*/
+
+
   }
 
 }
