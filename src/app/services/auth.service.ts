@@ -78,7 +78,8 @@ export class AuthService {
                         res => {//console.log(res.toJSON());
                           this.dataService.fillItems2(res.val().url).then(
                             res => {this.user2$.next(success.user);
-                            this.router.navigate(['/phrases']);
+                                    this.router.navigate(['/phrases']);
+                                    this.dataService.fillIrrverbs();
                             }
                           );
                         }

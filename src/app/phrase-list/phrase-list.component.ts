@@ -103,7 +103,7 @@ export class PhraseListComponent implements OnInit {
     this.currentRating = value;
   }
 
-  createPhrase() {
-    this.router.navigateByUrl('phrase-create');
-  }
+  createPhrase() { this.router.navigateByUrl('phrase-create'); }
+
+  getListIrrVerbs() { this.router.navigateByUrl('irrverbs'); }
 }

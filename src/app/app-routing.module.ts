@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SuperSecretComponent } from './super-secret/super-secret.component';
 import { PhraseListComponent } from "./phrase-list/phrase-list.component";
 import { PhraseCreateComponent } from "./phrase-create/phrase-create.component";
+import { IrrverbsComponent } from './irrverbs/irrverbs.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: 'secret', component: SuperSecretComponent, canActivate: [AuthGuard]},
   { path: 'phrases', component: PhraseListComponent, canActivate: [AuthGuard]},
   { path: 'phrase-create', component: PhraseCreateComponent, canActivate: [AuthGuard]},
+  { path: 'irrverbs', component: IrrverbsComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '' }
 ];
 

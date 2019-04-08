@@ -24,7 +24,7 @@ import { PhraseEditComponent } from './phrase-edit/phrase-edit.component';
 import { PhraseListComponent } from './phrase-list/phrase-list.component';
 import { DataService } from './services/data.service';
 import { UploadFileService } from './services/upload-file.service';
-import { IrrverbsComponent } from './irrverbs/inverbs.component';
+import { IrrverbsComponent } from './irrverbs/irrverbs.component';
 
 @NgModule({
   declarations: [
