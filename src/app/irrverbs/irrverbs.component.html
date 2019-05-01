@@ -1,9 +1,9 @@
 <div>
   <section class="example-section">
-    <mat-checkbox class="example-margin" [(ngModel)]="v0" (change)="changeColumns('v0')">v0</mat-checkbox>
-    <mat-checkbox class="example-margin" [(ngModel)]="v2" (change)="changeColumns('v2')">v2</mat-checkbox>
-    <mat-checkbox class="example-margin" [(ngModel)]="v3" (change)="changeColumns('v3')">v3</mat-checkbox>
-    <mat-checkbox class="example-margin" [(ngModel)]="t" (change)="changeColumns('t')">Translate</mat-checkbox>
+    <mat-checkbox class="example-margin" [(ngModel)]="v0" (change)="changeColumns('v0', $event)">v0</mat-checkbox>
+    <mat-checkbox class="example-margin" [(ngModel)]="v2" (change)="changeColumns('v2', $event)">v2</mat-checkbox>
+    <mat-checkbox class="example-margin" [(ngModel)]="v3" (change)="changeColumns('v3', $event)">v3</mat-checkbox>
+    <mat-checkbox class="example-margin" [(ngModel)]="t" (change)="changeColumns('t', $event)">Translate</mat-checkbox>
   </section>
 </div>
 

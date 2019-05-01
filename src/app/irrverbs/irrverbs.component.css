@@ -1,8 +1,12 @@
 table {
     width: 100%;
-  }
+}
   
-  .mat-form-field {
+.mat-form-field {
     font-size: 14px;
     width: 100%;
-  }
+}
+
+.example-margin {
+  padding-right: 30px;
+}
