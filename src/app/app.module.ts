@@ -13,7 +13,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { MatTableModule, MatExpansionModule, MatFormFieldModule,
   MatInputModule, MatButtonModule, MatCheckboxModule, MatOptionModule, MatSelectModule, 
-  MatListModule, MatIconModule } from '@angular/material';
+  MatListModule, MatIconModule, MatToolbar, MatToolbarModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

@@ -16,6 +16,7 @@ export class IrrverbsComponent implements OnInit {
   displayedColumns: string[] = ['v0', 'v2', 'v3', 't'];
   columnsToDisplay: string[] = this.displayedColumns;
   dataSource: any;
+  testRow: string[] = ['test1', 'test2'];
 
   v0: boolean = true;
   v2: boolean = true;
@@ -67,7 +68,7 @@ export class IrrverbsComponent implements OnInit {
           this.newArray = [e, ...this.newArray];
           break;
         case 'v2':
-          if (this.newArray[0] == 'v0' && (this.newArray[1] == 'v3' || this.newArray[1] == 't') )  {
+          if (this.newArray[0] == 'v0' && (this.newArray[1] == 'v3' || this.newArray[1] == 't') || this.newArray[1] == undefined)  {
             this.newArray = insert(this.newArray, 1, e);
           } else if (this.newArray[0] == 'v3' || this.newArray[0] == 't') {this.newArray = insert(this.newArray, 0, e);}
             else if (this.newArray.length == 0 ) {this.newArray = [e, ...this.newArray];}
