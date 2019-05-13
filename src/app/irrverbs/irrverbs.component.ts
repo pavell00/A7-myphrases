@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource, MatSnackBar} from '@angular/material';
 
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -16,15 +16,18 @@ export class IrrverbsComponent implements OnInit {
   displayedColumns: string[] = ['v0', 'v2', 'v3', 't'];
   columnsToDisplay: string[] = this.displayedColumns;
   dataSource: any;
-  testRow: string[] = ['test1', 'test2'];
+  testRowData: string[] = ['v0', 'v2', 'v3', 't'];
+  displayedFootColumns = this.testRowData;
 
   v0: boolean = true;
   v2: boolean = true;
   v3: boolean = true;
   t: boolean = true;
   newArray : any[] = this.displayedColumns;
-  
-  constructor(private dataService: DataService, private router : Router, private auth: AuthService) { }
+  shv0 = false
+  shv2 = false
+
+  constructor(private dataService: DataService, private router : Router, private auth: AuthService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.dataService.getIrrverbs().subscribe(
@@ -32,6 +35,14 @@ export class IrrverbsComponent implements OnInit {
         //console.log(res);
       }
     )
+  }
+
+  get myStylesV0() :any {
+    return {'display': this.shv0 ? 'true' : 'false'};
+  }
+
+  get myStylesV2() :any {
+    return {'display': this.shv2 ? 'true' : 'false'};
   }
 
   applyFilter(filterValue: string) {

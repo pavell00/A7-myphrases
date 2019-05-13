@@ -13,7 +13,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { MatTableModule, MatExpansionModule, MatFormFieldModule,
   MatInputModule, MatButtonModule, MatCheckboxModule, MatOptionModule, MatSelectModule, 
-  MatListModule, MatIconModule, MatToolbar, MatToolbarModule } from '@angular/material';
+  MatListModule, MatIconModule, MatToolbar, MatToolbarModule, MatSnackBarModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,7 +37,7 @@ import { IrrverbsComponent } from './irrverbs/irrverbs.component';
     BrowserAnimationsModule,
     FormsModule,
     MatListModule, MatIconModule,
-    MatTableModule, MatExpansionModule, MatFormFieldModule, MatSelectModule,
+    MatTableModule, MatExpansionModule, MatFormFieldModule, MatSelectModule, MatSnackBarModule,
     MatInputModule, HttpClientModule, MatButtonModule, MatCheckboxModule, MatOptionModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
