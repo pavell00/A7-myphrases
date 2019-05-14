@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource, MatSnackBar} from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource, MatSnackBar } from '@angular/material';
 
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { InVerb } from '../models/inverb';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -16,16 +15,17 @@ export class IrrverbsComponent implements OnInit {
   displayedColumns: string[] = ['v0', 'v2', 'v3', 't'];
   columnsToDisplay: string[] = this.displayedColumns;
   dataSource: any;
-  testRowData: string[] = ['v0', 'v2', 'v3', 't'];
-  displayedFootColumns = this.testRowData;
 
   v0: boolean = true;
   v2: boolean = true;
   v3: boolean = true;
-  t: boolean = true;
+  t: boolean  = true;
   newArray : any[] = this.displayedColumns;
-  shv0 = false
-  shv2 = false
+
+  StylesV0: string = 'table-cell';
+  StylesV2: string = 'table-cell';
+  StylesV3: string = 'table-cell';
+  StylesT:  string = 'table-cell';
 
   constructor(private dataService: DataService, private router : Router, private auth: AuthService, private snackBar: MatSnackBar) { }
 
@@ -37,12 +37,27 @@ export class IrrverbsComponent implements OnInit {
     )
   }
 
-  get myStylesV0() :any {
-    return {'display': this.shv0 ? 'true' : 'false'};
-  }
-
-  get myStylesV2() :any {
-    return {'display': this.shv2 ? 'true' : 'false'};
+  myStyles(s: string) {
+    switch (s) {
+      case 'v0':
+        if (this.StylesV0 != 'table-cell') return this.StylesV0 = 'table-cell';
+        if (this.StylesV0 === 'table-cell') return this.StylesV0 = 'none';        
+        break;
+      case 'v2':
+        if (this.StylesV2 != 'table-cell') return this.StylesV2 = 'table-cell';
+        if (this.StylesV2 === 'table-cell') return this.StylesV2 = 'none';        
+        break;
+      case 'v3':
+        if (this.StylesV3 != 'table-cell') return this.StylesV3 = 'table-cell';
+        if (this.StylesV3 === 'table-cell') return this.StylesV3 = 'none';        
+        break;
+      case 't':
+        if (this.StylesT != 'table-cell') return this.StylesT = 'table-cell';
+        if (this.StylesT === 'table-cell') return this.StylesT = 'none';        
+        break;        
+      default:
+        break;
+    }
   }
 
   applyFilter(filterValue: string) {
