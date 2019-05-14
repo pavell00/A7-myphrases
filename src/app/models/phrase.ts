@@ -6,4 +6,6 @@ export class Phrase {
     unit?: number;
     rating?: number;
     theme?: string;
+    level?: string;
+    type?: string;
   }
