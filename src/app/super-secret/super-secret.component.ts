@@ -47,7 +47,7 @@ export class SuperSecretComponent implements OnInit {
     //this.task = this.afstorage.upload('/dictionary/test.json', event.target.files[0])
     //this.task = this.ref.put('./test.json');
     //console.log(this.user);
-    this.afstorage.upload('/upload/'+this.email+'.json',  event.target.files[0]);
+    this.afstorage.upload('/uploads/'+this.email+'.json',  event.target.files[0]);
     //this.adb.list('dictionary').push('./test.json');
   }
 

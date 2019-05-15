@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './services/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
   password: string;
 
   constructor(db: AngularFirestore, public auth: AuthService, private afAuth: AngularFireAuth,
-    private dataService: DataService) {
+    private dataService: DataService, private router : Router) {
     //this.items = db.collection('employees').valueChanges();
   }
 
@@ -33,4 +34,7 @@ export class AppComponent implements OnInit {
     )
   }
 
+  createPhrase() { this.router.navigateByUrl('phrase-create'); }
+
+  getListIrrVerbs() { this.router.navigateByUrl('irrverbs'); }
 }

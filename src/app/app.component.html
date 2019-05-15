@@ -1,14 +1,19 @@
-<h1>Base</h1> {{ email }}
+<h3>Find phrases</h3>
 <div *ngIf="auth.user2$ | async as user; else login">
   <!--<pre>
     {{user | json}}
   </pre>
   <hr>-->
   <!--<button class="button" (click)="auth.signOut()">Sign Out</button>-->
+  {{ email }}
   <button class="button" (click)="auth.signOut()">LogOut Email</button>
   <div>
     <a [routerLink]="['/secret']">Secret</a>
     <a [routerLink]="['/phrases']">Phrases</a>
+  </div>
+  <div class="example-button-row">
+    <button mat-mini-fab color="primary" (click)="createPhrase()"><mat-icon>add</mat-icon></button>
+    <button mat-mini-fab color="primary" (click)="getListIrrVerbs()"><mat-icon>favorite</mat-icon></button>
   </div>
 </div>
 
