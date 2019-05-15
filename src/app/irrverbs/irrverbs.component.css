@@ -10,3 +10,13 @@ table {
 .example-margin {
   padding-right: 30px;
 }
+
+.material-icons.md-18 {
+  margin-top: -10px;
+  font-size: 14px;
+}
+
+.mat-mini-fab {
+  width: 24px;
+  height: 24px;
+}
