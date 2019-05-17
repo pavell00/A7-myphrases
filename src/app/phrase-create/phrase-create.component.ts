@@ -41,4 +41,8 @@ export class PhraseCreateComponent implements OnInit {
         newPhrase.type = "General";
         this.dataService.addPhrase(newPhrase);
     }
+
+    saveToCloudStore() {
+        
+    }
 }
