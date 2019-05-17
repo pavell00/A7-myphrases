@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpParams } from '@angular/comm
 
 import { Phrase } from '../models/phrase';
 import { InVerb } from '../models/inverb';
-import { Observable, pipe, from } from 'rxjs';
-import { distinct, tap, flatMap, map } from 'rxjs/operators';
+import { Observable, pipe, from, BehaviorSubject, of } from 'rxjs';
+import { distinct, tap, flatMap, map, take } from 'rxjs/operators';
 
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { FileUpload } from '../models/fileupload';
@@ -16,9 +16,11 @@ import { reject } from 'q';
 })
 export class DataService {
 
-  irrverbUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/dictionary%2FinvalVerb.json?alt=media&token=92880f03-e864-4689-bf8d-a146033dd5bb';
+  irrverbUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/dictionary%2FirregularVerbs.json?alt=media&token=26fa7651-6d4a-447c-8927-d3145a43b260';
   dataUrl = 'https://firebasestorage.googleapis.com/v0/b/myfirstfbapp-4fa9f.appspot.com/o/dictionary%2Flanguage.json?alt=media&token=2305b3a6-93d3-4035-9a93-d71557f80d2d';
-  items: Observable<Phrase[]>;
+  
+  obsArray: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  items: Observable<Phrase[]> = this.obsArray.asObservable();
   inverbItems: Observable<InVerb[]>;
 
   constructor(private http: HttpClient) { }
@@ -98,10 +100,14 @@ export class DataService {
     );
   }
 
-  addPhrase(newEmp) {
-    let emps = JSON.parse(localStorage.getItem('employees'));
-    emps.push(newEmp);
-    localStorage.setItem('employees', JSON.stringify(emps));
+  addPhrase(phrase: Phrase) {
+    this.items.pipe(take(1)).subscribe(val => {
+      //const newArr = [...val, phrase];
+      //this.obsArray.next(newArr);
+      val.push(phrase);
+      //console.log(val);
+      this.obsArray.next(val);
+    })
   }
 
   deletePhrase(id) {
