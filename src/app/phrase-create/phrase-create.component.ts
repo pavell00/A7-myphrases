@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Phrase } from '../models/phrase';
-//const fs = require('fs');
-//const fs = (<any>window).require("fs");
-//import * as fs from 'fs';
 
 @Component({
     selector: 'app-phrase-create',
@@ -11,38 +8,35 @@ import { Phrase } from '../models/phrase';
     styleUrls: ['./phrase-create.component.css']
 })
 export class PhraseCreateComponent implements OnInit {
+    id: string;
     RUS_phrase: string;
     ENG_phrase: string;
     ESP_phrase: string;
+    unit: number = 1;
+    rating: number = 0;
+    theme: string = 'public';
+    level: string = 'A1';
+    type: string = 'General';
     list: any;
 
     constructor(private dataService: DataService) { }
 
     ngOnInit(): void {
-        this.dataService.items.subscribe(res => this.list = res)
+        //this.dataService.items.subscribe(res => this.list = res)
     }
 
     addPhrase () {
-        //console.log(this.RUS_phrase, this.ENG_phrase, this.ESP_phrase);
-        let data = "Learning how to write in a file."
-        // Write data in 'Output.txt' . 
-        /*fs.writeFile('Output.txt', data, (err:any) => { 
-            // In case of a error throw err. 
-            if (err) throw err; 
-        })*/
         let newPhrase = new Phrase();
-        newPhrase.id = "10";
-        newPhrase.langENG = "stop";
-        newPhrase.langRUS = "стоп";
-        newPhrase.langESP = "la stope";
-        newPhrase.rating = 0;
-        newPhrase.theme = "цвет";
-        newPhrase.level = "A1";
-        newPhrase.type = "General";
+        newPhrase.id = this.id;
+        newPhrase.langRUS = this.RUS_phrase;
+        newPhrase.langENG = this.ENG_phrase;
+        newPhrase.langESP = this.ESP_phrase;
+        newPhrase.unit = this.unit;
+        newPhrase.rating = this.rating;
+        newPhrase.theme = this.theme;
+        newPhrase.level = this.level;
+        newPhrase.type = this.type;
         this.dataService.addPhrase(newPhrase);
     }
 
-    saveToCloudStore() {
-        
-    }
 }

@@ -37,4 +37,8 @@ export class AppComponent implements OnInit {
   createPhrase() { this.router.navigateByUrl('phrase-create'); }
 
   getListIrrVerbs() { this.router.navigateByUrl('irrverbs'); }
+
+  saveToCloudStore() {
+
+  }
 }

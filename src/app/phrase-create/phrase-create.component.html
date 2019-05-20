@@ -1,14 +1,32 @@
-<h3>create-phrase</h3>
+<h3>create new phrase</h3>
 
 <div>
+    <mat-form-field>
+        <input matInput placeholder="id" value="" [(ngModel)]="id">
+    </mat-form-field>
     <mat-form-field>
         <input matInput placeholder="RUS phrase" value="" [(ngModel)]="RUS_phrase">
     </mat-form-field>
     <mat-form-field>
-            <input matInput placeholder="ENG phrase" value="" [(ngModel)]="ENG_phrase">
+        <input matInput placeholder="ENG phrase" value="" [(ngModel)]="ENG_phrase">
     </mat-form-field>
     <mat-form-field>
-            <input matInput placeholder="ESP phrase" value="" [(ngModel)]="ESP_phrase">
+        <input matInput placeholder="ESP phrase" value="" [(ngModel)]="ESP_phrase">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="unit" type="number" value="0" [(ngModel)]="unit">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="rating" type="number" value="0" [(ngModel)]="rating">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="theme" value="" [(ngModel)]="theme">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="level" value="" [(ngModel)]="level">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="type" value="" [(ngModel)]="type">
     </mat-form-field>
 </div>
 
@@ -18,9 +36,7 @@
 <a mat-mini-fab (click)="addPhrase()">
         <mat-icon>add</mat-icon>
 </a>
-<a mat-mini-fab (click)="saveToCloudStore()">
-    <mat-icon>save</mat-icon>
-</a>
+
 <!--<i class="material-icons md-18">face</i>
 <i class="material-icons md-18">save</i>-->
 <!--<img [src]="assets/images/twotone_save_black_18dp.png">-->
