@@ -68,18 +68,6 @@ export class PhraseListComponent implements OnInit {
      //console.log(this.phrasesFiltered);
   }
 
-  onTest() {
-    let oo = new Phrase();
-    oo.id = '10';
-    oo.langRUS = 'ыыыы';
-    oo.langENG = 'sssssss';
-    oo.langESP = 'qqqq';
-    oo.rating = 5;
-    oo.unit = 33;
-    oo.theme = 'test';
-    this.phrasesFiltered.splice(1, 0, oo);
-  }
-
   onThemes() {
     this.dataService.getThemesFromItems() //getThemes()
       .subscribe(
