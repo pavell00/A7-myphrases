@@ -23,6 +23,7 @@ export class PhraseCreateComponent implements OnInit {
 
     ngOnInit(): void {
         //this.dataService.items.subscribe(res => this.list = res)
+        this.getMaxId();
     }
 
     addPhrase () {
@@ -41,7 +42,7 @@ export class PhraseCreateComponent implements OnInit {
 
     getMaxId() {
         this.dataService.getMaxIdFromItems().subscribe(
-            data => (console.log(data))
+            data => (this.id = data + 1)
         )
     }
 }
