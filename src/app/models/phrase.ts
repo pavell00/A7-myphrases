@@ -1,5 +1,5 @@
 export class Phrase {
-    id?: string;
+    id?: number;
     langRUS?: string;
     langENG?: string;
     langESP?: string;

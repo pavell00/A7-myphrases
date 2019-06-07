@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpParams } from '@angular/comm
 import { Phrase } from '../models/phrase';
 import { InVerb } from '../models/inverb';
 import { Observable, pipe, from, BehaviorSubject, of } from 'rxjs';
-import { distinct, tap, flatMap, map, take } from 'rxjs/operators';
+import { distinct, tap, flatMap, map, take, max } from 'rxjs/operators';
 
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { FileUpload } from '../models/fileupload';
@@ -97,6 +97,14 @@ export class DataService {
       map((s) => s),
       flatMap(a => a),
       distinct((t: Phrase) => t.rating)
+    );
+  }
+
+  getMaxIdFromItems() {
+    return this.items.pipe(
+      map((s) => s),
+      flatMap(a => a),
+      max((t: Phrase) => t.id)
     );
   }
 

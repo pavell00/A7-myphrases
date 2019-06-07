@@ -8,7 +8,7 @@ import { Phrase } from '../models/phrase';
     styleUrls: ['./phrase-create.component.css']
 })
 export class PhraseCreateComponent implements OnInit {
-    id: string;
+    id: number;
     RUS_phrase: string;
     ENG_phrase: string;
     ESP_phrase: string;
