@@ -39,4 +39,9 @@ export class PhraseCreateComponent implements OnInit {
         this.dataService.addPhrase(newPhrase);
     }
 
+    getMaxId() {
+        this.dataService.getMaxIdFromItems().subscribe(
+            data => (console.log(data))
+        )
+    }
 }

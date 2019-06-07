@@ -1,10 +1,10 @@
-  import { Injectable, ɵConsole } from '@angular/core';
+import { Injectable, ɵConsole } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpParams } from '@angular/common/http';
 
 import { Phrase } from '../models/phrase';
 import { InVerb } from '../models/inverb';
-import { Observable, pipe, from, BehaviorSubject, of } from 'rxjs';
-import { distinct, tap, flatMap, map, take, max } from 'rxjs/operators';
+import { Observable, from, BehaviorSubject } from 'rxjs';
+import { distinct, flatMap, map, take, max} from 'rxjs/operators';
 
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { FileUpload } from '../models/fileupload';
@@ -102,10 +102,20 @@ export class DataService {
 
   getMaxIdFromItems() {
     return this.items.pipe(
-      map((s) => s),
+      map(v => v),
       flatMap(a => a),
-      max((t: Phrase) => t.id)
-    );
+      max(this.comparer), // Phrase object whit max ID
+      map(a => a.id), // return Max(Id)
+    )
+    
+  }
+
+  comparer(x: Phrase, y: Phrase) {
+    if( x.id > y.id ) {
+      return 1;
+    } else if( x.id < y.id ) {
+      return -1;
+    } else return 0;
   }
 
   addPhrase(phrase: Phrase) {
